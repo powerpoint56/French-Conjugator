@@ -1,7 +1,7 @@
 {
   "name": "french-conjugator",
   "version": "1.0.0",
-  "description": "An ad-hoc JS version of a French conjugator I made in C++",
+  "description": "An accurate rule-based French conjugator.",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
