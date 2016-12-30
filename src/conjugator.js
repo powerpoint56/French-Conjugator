@@ -177,7 +177,7 @@ class Verb {
     if (this.is_reflexive) {
       this.auxiliary = etre;
     } else {
-      this.auxiliary = avoir;
+      this.auxiliary = avoir || this; // if avoir ain't defined yet it bein' defined ri here
     }
 
     this.essential = '';
@@ -693,7 +693,7 @@ class Verb {
   }
 }
 
-const etre = new Verb('être');
 const avoir = new Verb('avoir');
+const etre = new Verb('être');
 
 export {Verb};
