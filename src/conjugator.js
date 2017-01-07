@@ -389,6 +389,7 @@ class Verb {
   forms(mood, voice, tense, person) { // can also do forms(voice)
     let result;
     if (mood instanceof Voice) {
+      mood = voice;
       result = this.forms(Mood.infinitive, voice);
       result += this.forms(Mood.participle, voice);
       result += this.forms(Mood.indicative, voice);
