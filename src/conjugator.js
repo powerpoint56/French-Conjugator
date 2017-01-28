@@ -64,8 +64,8 @@ const irregular_7_verbs = [
   // inf, fut stem, 1S, 1P, 3P, PP, Simple PAST
   ['envoyer', 'enverr', 'envoi', 'envoy', 'envoi', 'envoyé', 'envoya'],
 
-  ['vrir', 'vr', 'vr', 'vr', 'vr', 'vert', 'vri'],
-  ['frir', 'fr', 'fr', 'fr', 'fr', 'fert', 'fri'],
+  ['vrir', 'vrir', 'vr', 'vr', 'vr', 'vert', 'vri'],
+  ['frir', 'frir', 'fr', 'fr', 'fr', 'fert', 'fri'],
 
   ['faillir', 'faillir', 'fau', 'faill', 'faill', 'failli', 'failli'],
   ['aillir', 'aillir', 'aill', 'aill', 'aill', 'ailli', 'ailli'],
@@ -389,16 +389,16 @@ class Verb {
   forms(mood, voice, tense, person) { // can also do forms(voice)
     let result;
     if (mood instanceof Voice) {
-      mood = voice;
+      voice = mood;
       result = this.forms(Mood.infinitive, voice);
       result += this.forms(Mood.participle, voice);
       result += this.forms(Mood.indicative, voice);
       result += this.forms(Mood.subjunctive, voice);
       result += this.forms(Mood.conditional, voice);
       result += this.forms(Mood.imperative, voice);
-    } else if ((mood instanceof Mood) && !voice) {
+    } else if ((mood instanceof Mood) && voice === undefined) {
       result = this.forms(mood, Voice.active);
-    } else if (!tense) {
+    } else if (tense === undefined) {
       result = '\n==== ';
       result += capitalize(mood.name);
       result += ' ====\n';
@@ -431,7 +431,7 @@ class Verb {
         result += this.forms(mood, voice, Tense.past);
         result += '\n';
       }
-    } else if (!person) {
+    } else if (person === undefined) {
       result = '\n';
       result += capitalize(tense.name);
       if (mood === Mood.participle || mood === Mood.infinitive) {
@@ -449,7 +449,7 @@ class Verb {
   }
 
   form(mood, voice, tense, person) {
-    if (!voice) {
+    if (voice === undefined) {
       return this.form(mood, Voice.active);
     }
 
@@ -674,7 +674,7 @@ class Verb {
       }
     }
 
-    if (voice === Voice.null) {
+    if (voice === undefined) {
       voice = Voice.active;
     }
 
